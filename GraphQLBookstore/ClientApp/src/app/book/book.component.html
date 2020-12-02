@@ -1,0 +1,62 @@
+<div class="card" *ngIf="is_editting">
+    <div class="card-header">
+        Book Form
+    </div>
+    <div class="card-body">
+        <div class="form-row">
+            <div class="form-group col-md-10">
+                <input type="search" class="form-control" autofocus placeholder="Type name here" [(ngModel)]="currentBook.name">
+                <input type="search" class="form-control" autofocus placeholder="Type description here" [(ngModel)]="currentBook.description">
+                <input type="search" class="form-control" autofocus placeholder="Type price here" [(ngModel)]="currentBook.price">
+                <input type="search" class="form-control" autofocus placeholder="Type authorID here" [(ngModel)]="currentBook.author">
+            
+            </div>
+            <div class="form-group col-md-2">
+                <button class="btn btn-primary" (click)="save()">Save</button>
+                <button class="btn btn-danger" (click)="is_editting = false">Cancel</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="card" *ngIf="!is_editting">
+    <div class="card-header">
+        Filter
+    </div>
+    <div class="card-body">
+        <div class="form-row">
+            <div class="form-group col-md-10">
+                <input type="search" class="form-control" autofocus placeholder="Filter by name here..." [(ngModel)]="name_filter">
+            </div>
+            <div class="form-group col-md-2">
+                <button class="btn btn-primary" (click)="filter()">Filter</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<table class="table">
+    <tr>
+        <th>Id</th>
+        <th>Name</th>
+        <th>description</th>
+        <th>Price</th>
+        <th>AuthorId</th>
+
+        <th>
+            <button class="btn btn-success" (click)="is_editting = true">New Book</button>
+        </th>
+    </tr>
+    <tr *ngFor="let book of books">
+        <td>{{book.id}}</td>
+        <td>{{book.name}}</td>
+        <td>{{book.description}}</td>
+        <td>{{book.price}}</td>
+        <td>{{book.author}}</td>
+
+        <td>
+            <button class="btn btn-warning mr-2" (click)="edit(book)">Edit</button>
+            <button class="btn btn-danger" (click)="delete(book)">Delete</button>
+        </td>
+    </tr>
+</table>
